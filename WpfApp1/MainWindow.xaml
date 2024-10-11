@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="System Monitor" Height="550" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- CPU Usage -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+            <TextBlock Text="CPU Usage:" FontWeight="Bold"/>
+            <ProgressBar x:Name="cpuProgressBar" Height="20" Maximum="100"/>
+            <TextBlock x:Name="cpuUsageTextBlock"/>
+            <TextBlock x:Name="cpuTemperatureTextBlock" Text="CPU Temperature: N/A" FontWeight="Bold" Margin="5"/>
+        </StackPanel>
+
+        <!-- Memory Usage -->
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
+            <TextBlock Text="Memory Usage:" FontWeight="Bold"/>
+            <ProgressBar x:Name="memoryProgressBar" Height="20" Maximum="100"/>
+            <TextBlock x:Name="memoryUsageTextBlock"/>
+        </StackPanel>
+
+        <!-- Network Usage -->
+        <StackPanel Grid.Row="0" Grid.Column="2" Margin="5">
+            <TextBlock Text="Network Usage:" FontWeight="Bold"/>
+            <ProgressBar x:Name="networkProgressBar" Height="20" Maximum="100"/>
+            <TextBlock x:Name="networkUsageTextBlock"/>
+        </StackPanel>
+
+        <!-- CPU Usage Chart -->
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="5">
+            <TextBlock Text="CPU Usage Over Time:" FontWeight="Bold"/>
+            <Canvas x:Name="cpuUsageCanvas" Height="100" Background="LightGray">
+                <Polyline x:Name="cpuUsageChart" Stroke="Blue" StrokeThickness="2"/>
+            </Canvas>
+        </StackPanel>
+
+        <!-- Process Filter and Manual Update -->
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="5">
+            <TextBlock Text="Filter Processes:" FontWeight="Bold"/>
+            <TextBox x:Name="filterTextBox" TextChanged="FilterTextBox_TextChanged"/>
+            <Button Content="Update Now" Click="UpdateNowButton_Click" Margin="5"/>
+            <ListBox x:Name="processesListBox" Height="200"/>
+        </StackPanel>
+    </Grid>
+</Window>
